@@ -1,0 +1,21 @@
+version: '2'
+services:
+
+ # The Application
+ app:
+   build:
+     context: ./
+     dockerfile: app.dockerfile
+   working_dir: /var/www
+   volumes:
+     - ./:/var/www
+   ports:
+     - 8090:80
+   # as firebase uses port 9005 to authenticate
+     - 8091:9005
+   # This stops the container to exit.
+   # to interact with the container
+   # cd to the project directory
+   # RUN docker-compose exec app <COMAND>
+   stdin_open: true
+   tty: true
